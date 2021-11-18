@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Cool Latin Traveler</title>
+	<link rel="icon" href="../static/imgs/logo.png">
+	<link rel="stylesheet" href="../static/css/styles.css">
+	<link rel="stylesheet" href="../static/css/reset.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+	<nav id="menu">
+		<h1>Cool Latin Traveler</h1>
+		<ul>
+			<a href=""><li style="color: grey;">Inicio</li></a>
+			<a href=""><li>¿Cómo funciona?</li></a>
+		</ul>
+	</nav>
+	
+	<section id="content">
+		<div class="result">
+			<div class="image-result"></div>
+			<div class="graph-result" style="margin-bottom: 20px;"><p>Resultado (por index): {{ solNum }}</p></div>
+			<div class="graph-result"><p>Resultado (por país): {{ solCountry }}</p></div>
+		</div>
+		<div class="inputs">
+			<div class="map">
+				<h1>Mapa Latinoamérica</h1>
+				<div class="map-image"></div>
+			</div>
+			<form action="{{ url_for('inputUsuario') }}" method="post" class="text-center">
+				<div class="user-input">
+					<h1 style="margin-bottom: 10px;">Seleccionar paises</h1>
+					<input type="checkbox" id="country1" name="country" value="0">
+					<label for="country1">México - mx</label><br>
+					
+					<input type="checkbox" id="country2" name="country" value="1">
+					<label for="country2">Argentina - ar</label><br>
+					
+					<input type="checkbox" id="country3" name="country" value="2">
+					<label for="country3">Bolivia - bo</label><br>
+					
+					<input type="checkbox" id="country4" name="country" value="3">
+					<label for="country4">Brazil - br</label><br>
+					
+					<input type="checkbox" id="country5" name="country" value="4">
+					<label for="country5">Chile - cl</label><br>
+					
+					<input type="checkbox" id="country6" name="country" value="5">
+					<label for="country6">Colombia - co</label><br>
+					
+					<input type="checkbox" id="country7" name="country" value="6">
+					<label for="country7">Costa Rica - cr</label><br>
+					
+					<input type="checkbox" id="country8" name="country" value="7">
+					<label for="country8">Cuba - cu</label><br>
+					
+					<input type="checkbox" id="country9" name="country" value="8">
+					<label for="country9">Rep. Dominicana - do</label><br>
+					
+					<input type="checkbox" id="country10" name="country" value="9">
+					<label for="country10">Ecuador - ec</label><br>
+					
+					<input type="checkbox" id="country11" name="country" value="10">
+					<label for="country11">Guatemala - gt</label><br>
+					
+					<input type="checkbox" id="country12" name="country" value="11">
+					<label for="country12">Honduras - hn</label><br>
+					
+					<input type="checkbox" id="country13" name="country" value="12">
+					<label for="country13">Haiti - ht</label><br>
+					
+					<input type="checkbox" id="country14" name="country" value="13">
+					<label for="country14">Puerto Rico - pr</label><br>
+					
+					<input type="checkbox" id="country15" name="country" value="14">
+					<label for="country15">El Salvador - sv</label><br>
+					
+					<input type="checkbox" id="country16" name="country" value="15">
+					<label for="country16">Trinidad y Tobago - tt</label><br>
+					
+					<input type="checkbox" id="country17" name="country" value="16">
+					<label for="country17">Nicaragua - ni</label><br>
+					
+					<input type="checkbox" id="country18" name="country" value="17">
+					<label for="country18">Panamá - pa</label><br>
+					
+					<input type="checkbox" id="country19" name="country" value="18">
+					<label for="country19">Peru - pe</label><br>
+					
+					<input type="checkbox" id="country20" name="country" value="19">
+					<label for="country20">Paraguay - py</label><br>
+				</div>
+				<button type="submit" style="margin-top:15px">Buscar ruta</button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>
