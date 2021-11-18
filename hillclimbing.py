@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Agg')
 
-countries = ['mx','ar','bo','br','cl','co','cr','cu','do','ec','gt','hn','ht','pr','sv','tt','ni','pa','pe','py']
+countries = ['mx','ar','bo','br','cl','co','cr','cu','do','ec','gt','hn','ht','pr','sv','tt','ur','ni','pa','pe','py']
 #Lee archivo txt con las coordenadas de los paises
 def getInputs(inp):
     data = []
