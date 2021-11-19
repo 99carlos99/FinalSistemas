@@ -1,3 +1,6 @@
+Jimena Bermudez Bautista - A01338680
+Carlos Maldonado Viveros - A01339011
+
 Para ejecutar este proyecto, el usuario necesitará instalar en su computadora 
 las siguientes herramientas:
 -Python
