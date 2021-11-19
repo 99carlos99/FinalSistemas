@@ -3,10 +3,10 @@ from typing import final
 import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
-import matplotlib
-matplotlib.use('Agg')
 
 countries = ['mx','ar','bo','br','cl','co','cr','cu','do','ec','gt','hn','ht','pr','sv','tt','ur','ni','pa','pe','py']
+
+
 #Lee archivo txt con las coordenadas de los paises
 def getInputs(inp):
     data = []
@@ -94,33 +94,33 @@ def hill_climbing(coords):
 
     return currentPath, currentSolution
 
-
 def graph(coords, countryCords):
     finalSolution = hill_climbing(coords)
     countryResults=[]
-    
 
     G = nx.DiGraph()
     t = finalSolution[1]
     G.add_nodes_from(finalSolution[1])
     
-
     for i in range(0, len(finalSolution[1])):
         countryResults.append( countryCords[t[i]] )
-        #print("fs",finalSolution[1][i])
-    print("Countries: ",countryResults)
 
     for i in range(1, len(finalSolution[1])):
         G.add_edge(t[i - 1], t[i])
-        print("t: ",t[i])
     G.add_edge(t[len(t) - 1], t[0])
+    
+   
     colorMap = []
     for node in G:
+        print("node: ",node)
         if node == finalSolution[1][0]:
             colorMap.append('lime')
         else: 
             colorMap.append('plum')
     nx.draw(G, with_labels = True, node_color = colorMap, node_size = 1000)
-    plt.savefig("path.png")
+    print("G: ",G)
+    #print(imageName)
+    plt.savefig("static/imgs/img1.png")
+    plt.close()
     print("The solution is \n", finalSolution[1], "\nThe path length is \n", finalSolution[0])
-    return finalSolution[1], countryResults
+    return finalSolution[1], countryResults, finalSolution[0]

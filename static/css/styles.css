@@ -48,30 +48,37 @@ li:hover{
 	background: #ECECEC;
 	float: left;
 }
+#content .result .results{
+}
 #content .result .image-result{
 	position: relative;
-	top: 60px;
 	left: 50%;
 	transform: translateX(-50%);
-	background-image: url("../imgs/path.png");
 	background-size: 100%;                      
     background-repeat: no-repeat;
     background-position: center; 
-	width: 540px;
-	border-radius: 10px;
+	width: 500px;
 	height: 380px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: solid 0.5px;
 }
+
+#content .result .image-result img{
+	width: 500px;
+}
+
 #content .result .graph-result{
+	position:relative;
 	overflow: scroll;
-	position: relative;
-	width: 540px;
+	width: 80%;
 	height: 70px;
-	top: 90px;
-	left: 50%;
-	transform: translateX(-50%);
 	background-color: lightgrey;
 	border-radius: 5px;
+	left:50%;
+	transform:translateX(-50%);
 }
+
 .graph-result p{
 	position: relative;
 	width: 96%;
@@ -80,6 +87,22 @@ li:hover{
 	top: 35%;
 	color: black;
 	font-family: 'Inter', sans-serif;
+}
+
+.results button{
+	position: relative;
+	top: 20px;
+	left: 83%;
+	transform: translateX(-50%);
+	background-color: #215BD8;
+	border: none;
+	color: white;
+	padding: 15px 22px !important;
+	cursor: pointer;
+	font-size: 15px;
+}
+.results button:hover{
+	background-color: #4C85FF;
 }
 
 

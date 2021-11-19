@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="../static/css/reset.css">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+	<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 	<nav id="menu">
@@ -20,9 +21,12 @@
 	
 	<section id="content">
 		<div class="result">
-			<div class="image-result"></div>
-			<div class="graph-result" style="margin-bottom: 20px;"><p>Resultado (por index): {{ solNum }}</p></div>
-			<div class="graph-result"><p>Resultado (por país): {{ solCountry }}</p></div>
+			<div class="results">
+				<div class="image-result"><img id="grapImage" src="{{img}}"></div>
+				<div class="graph-result" style="margin-bottom: 20px;"><p>Resultado (por index): {{ solNum }}</p></div>
+				<div class="graph-result" style="margin-bottom: 20px;"><p>Resultado (por país): {{ solCountry }}</p></div>
+				<div class="graph-result"><p>Longitud de ruta: {{ solLength }}</p></div>
+			</div>
 		</div>
 		<div class="inputs">
 			<div class="map">
@@ -32,7 +36,7 @@
 			<form action="{{ url_for('inputUsuario') }}" method="post" class="text-center">
 				<div class="user-input">
 					<h1 style="margin-bottom: 10px;">Seleccionar paises</h1>
-					<h2 style="margin-bottom: 10px">Se deben de seleccionar al menos 5 países para que el algoritmo funcione</h2>
+					<h2 style="margin-bottom: 10px">Se deben de seleccionar al menos 6 países para que el algoritmo funcione</h2>
 					<input type="checkbox" id="country1" name="country" value="0">
 					<label for="country1">México - mx</label><br>
 					
@@ -100,5 +104,23 @@
 			</form>
 		</div>
 	</section>
+	<script>
+        function getimg(){
+        $.ajax({
+            type: 'GET',
+            cache: false,
+            url: "{{url_for('get_img')}}", 
+            success: function(resp){
+                dt = new Date();
+                $('#grapImage').attr('src', resp.img);
+                console.log(resp.img);
+            }
+        }); 
+        }
+    
+        $(document).ready(function(){
+            setInterval(getimg, 1000);
+        });       
+    </script>
 </body>
 </html>
