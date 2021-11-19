@@ -1,3 +1,4 @@
+#este archivo sirve para relacionar el script de Python con las herramientas de desarrollo web.
 import json
 from flask import Flask, render_template, request, jsonify
 from hillclimbing import getInputs, getInputsCountries, graph
@@ -6,10 +7,14 @@ app = Flask(__name__)
 
 coords=[]
 
+#se hace routing de la página principal de la interfaz
 @app.route("/")
 def index():
     return render_template("index.html")
 
+#se obtienen las entradas puestas por el usuario
+#se mandan los datos al archivo hillclimbing.py 
+#se despliegan los resultados
 @app.route("/calcular", methods=['POST'])
 def inputUsuario():
     coords = getInputs(request.form.getlist('country'))
@@ -20,11 +25,13 @@ def inputUsuario():
     solLength = sol[2]
     return render_template("index.html",solNum=solNum,solCountry=solCountry,solLength=solLength)
 
+#se actualiza la imagen del grafo obtenida. 
 @app.route('/get_img', methods = ['GET'])
 def get_img():
     img = '../static/imgs/img1.png'
     return jsonify({'img':img}) 
 
+#se elimina el cache del framework para que se actualice la imagen de forma efectiva.
 @app.after_request
 def add_header(r):
     """

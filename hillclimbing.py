@@ -4,6 +4,8 @@ import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 
+#Conla finalidad que los países seleccionados se muestren en orden,
+#se ponen sus siglas en su orden de aparición en el .txt
 countries = ['mx','ar','bo','br','cl','co','cr','cu','do','ec','gt','hn','ht','pr','sv','tt','ur','ni','pa','pe','py']
 
 
@@ -14,12 +16,16 @@ def getInputs(inp):
     with open('paises2.txt') as my_file:      
         for line in my_file:  
             data.append([list(map(float ,x.split(','))) for x in line.split(' ')])
-    
+
+        #se toman los inputs del usuario y se arma una lista con sus coordenadas correspondientes
         for i in range(len(inp)):
             newdata.append(data[int(inp[i])])
+
+    #los datos obtenidos se toman en cuenta para la lista de coordenadas oficiales. 
     coords = np.array(newdata)
     return coords
 
+#Se agregan las siglas de los países correspondientes a los escogidos por el usuario.
 def getInputsCountries(inp):
     countryIndex = []
     for i in range(len(inp)):
@@ -77,27 +83,37 @@ def generateNeighbors(matrix, randSolution):
             bestNeighbor = neighbor
     return bestNeighbor, bestPath
 
-
+#se ejecuta el algoritmo de Hill Climbing, tomando en cuenta las coordenadas.
 def hill_climbing(coords):
+    #se crea la matriz de adyacencia. 
     matrix = createAdyacencyMatrix(coords)
     
+    #se crea una solucion aleatoria y una longitud de ruta basada en esta solucion.
     currSolution = randomSolution(matrix)
     currentPath = createPathlength(matrix, currSolution)
+
+    #se generan los vecinos tomando como base la solucion y matriz generadas.
     neighbor = generateNeighbors(matrix,currSolution)[0]
     bestNeighbor, bestNeighborPath = generateNeighbors(matrix, neighbor)
 
+    #se itera para determinar si la ruta obtenida es la más optima
+    #si se obtiene una mejor ruta, las variables declaradas anteriormente se actualizan.
     while bestNeighborPath < currentPath:
         currentSolution = bestNeighbor
         currentPath = bestNeighborPath
         neighbor = generateNeighbors(matrix, currentSolution)[0]
         bestNeighbor, bestNeighborPath = generateNeighbors(matrix, neighbor)
-
+    #se regresa la mejor ruta y la mejor solucion
     return currentPath, currentSolution
 
+#se genera el grafo y se obtienen los resultados
 def graph(coords, countryCords):
+    #se ejecuta el algoritmo y se guarda en una variable: finalSolution
     finalSolution = hill_climbing(coords)
+    
     countryResults=[]
 
+    #se establecen las variables para la creacion del grafo
     G = nx.DiGraph()
     t = finalSolution[1]
     G.add_nodes_from(finalSolution[1])
@@ -109,7 +125,7 @@ def graph(coords, countryCords):
         G.add_edge(t[i - 1], t[i])
     G.add_edge(t[len(t) - 1], t[0])
     
-   
+    #se crea el grafo, generando una imagen png. 
     colorMap = []
     for node in G:
         print("node: ",node)
